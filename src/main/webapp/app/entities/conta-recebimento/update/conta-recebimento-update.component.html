@@ -1,0 +1,187 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-conta-recebimento-heading"
+        data-cy="ContaRecebimentoCreateUpdateHeading"
+        jhiTranslate="contasApp.contaRecebimento.home.createOrEditLabel"
+      >
+        Criar ou editar Conta Recebimento
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.dataVencimento" for="field_dataVencimento"
+            >Data Vencimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataVencimento"
+              data-cy="dataVencimento"
+              type="text"
+              class="form-control"
+              name="dataVencimento"
+              ngbDatepicker
+              #dataVencimentoDp="ngbDatepicker"
+              formControlName="dataVencimento"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataVencimentoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('dataVencimento')!.invalid && (editForm.get('dataVencimento')!.dirty || editForm.get('dataVencimento')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dataVencimento')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.descricao" for="field_descricao">Descricao</label>
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.valor" for="field_valor">Valor</label>
+          <input type="number" class="form-control" name="valor" id="field_valor" data-cy="valor" formControlName="valor" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.dataRecebimento" for="field_dataRecebimento"
+            >Data Recebimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataRecebimento"
+              data-cy="dataRecebimento"
+              type="text"
+              class="form-control"
+              name="dataRecebimento"
+              ngbDatepicker
+              #dataRecebimentoDp="ngbDatepicker"
+              formControlName="dataRecebimento"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataRecebimentoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.valorRecebido" for="field_valorRecebido">Valor Recebido</label>
+          <input
+            type="number"
+            class="form-control"
+            name="valorRecebido"
+            id="field_valorRecebido"
+            data-cy="valorRecebido"
+            formControlName="valorRecebido"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.observacoes" for="field_observacoes">Observacoes</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observacoes"
+            id="field_observacoes"
+            data-cy="observacoes"
+            formControlName="observacoes"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.periodicidade" for="field_periodicidade">Periodicidade</label>
+          <select
+            class="form-control"
+            name="periodicidade"
+            formControlName="periodicidade"
+            id="field_periodicidade"
+            data-cy="periodicidade"
+          >
+            <option [ngValue]="null">{{ 'contasApp.Periodicidade.null' | translate }}</option>
+            <option *ngFor="let periodicidade of periodicidadeValues" [value]="periodicidade">
+              {{ 'contasApp.Periodicidade.' + periodicidade | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.pagador" for="field_pagador">Pagador</label>
+          <select
+            class="form-control"
+            id="field_pagador"
+            data-cy="pagador"
+            name="pagador"
+            formControlName="pagador"
+            [compareWith]="comparePagador"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="pagadorOption" *ngFor="let pagadorOption of pagadorsSharedCollection">
+              {{ pagadorOption.nomePagador }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.categoriaRecebimento" for="field_categoriaRecebimento"
+            >Categoria Recebimento</label
+          >
+          <select
+            class="form-control"
+            id="field_categoriaRecebimento"
+            data-cy="categoriaRecebimento"
+            name="categoriaRecebimento"
+            formControlName="categoriaRecebimento"
+            [compareWith]="compareCategoriaRecebimento"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="categoriaRecebimentoOption" *ngFor="let categoriaRecebimentoOption of categoriaRecebimentosSharedCollection">
+              {{ categoriaRecebimentoOption.nomeCategoria }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaRecebimento.caixa" for="field_caixa">Caixa</label>
+          <select class="form-control" id="field_caixa" data-cy="caixa" name="caixa" formControlName="caixa" [compareWith]="compareCaixa">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="caixaOption" *ngFor="let caixaOption of caixasSharedCollection">{{ caixaOption.nomeCaixa }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

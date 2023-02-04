@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20230204230026",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "caixa",
+  "fields": [
+    {
+      "fieldName": "nomeCaixa",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Caixa",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

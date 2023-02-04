@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20230204230025",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "categoria_recebimento",
+  "fields": [
+    {
+      "fieldName": "nomeCategoria",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CategoriaRecebimento",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

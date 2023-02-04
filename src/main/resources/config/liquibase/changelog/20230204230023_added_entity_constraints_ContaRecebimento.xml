@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity ContaRecebimento.
+    -->
+    <changeSet id="20230204230023-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="pagador_id"
+                                 baseTableName="conta_recebimento"
+                                 constraintName="fk_conta_recebimento__pagador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pagador"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_recebimento_id"
+                                 baseTableName="conta_recebimento"
+                                 constraintName="fk_conta_recebimento__categoria_recebimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria_recebimento"/>
+
+        <addForeignKeyConstraint baseColumnNames="caixa_id"
+                                 baseTableName="conta_recebimento"
+                                 constraintName="fk_conta_recebimento__caixa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="caixa"/>
+    </changeSet>
+</databaseChangeLog>

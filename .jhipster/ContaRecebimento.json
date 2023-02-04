@@ -1,0 +1,65 @@
+{
+  "applications": "*",
+  "changelogDate": "20230204230023",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "conta_recebimento",
+  "fields": [
+    {
+      "fieldName": "dataVencimento",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "dataRecebimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valorRecebido",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "observacoes",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "periodicidade",
+      "fieldType": "Periodicidade",
+      "fieldValues": "ESPORADICA,MENSAL,ANUAL,SEMANAL"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ContaRecebimento",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomePagador",
+      "otherEntityName": "pagador",
+      "relationshipName": "pagador",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomeCategoria",
+      "otherEntityName": "categoriaRecebimento",
+      "relationshipName": "categoriaRecebimento",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomeCaixa",
+      "otherEntityName": "caixa",
+      "relationshipName": "caixa",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

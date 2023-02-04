@@ -1,0 +1,24 @@
+{
+  "contasApp": {
+    "categoriaRecebimento": {
+      "home": {
+        "title": "Categoria Recebimentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Categoria Recebimento",
+        "createOrEditLabel": "Criar ou editar Categoria Recebimento",
+        "notFound": "Nenhum Categoria Recebimento encontrado"
+      },
+      "created": "Um novo Categoria Recebimento foi criado com o identificador {{ param }}",
+      "updated": "Um Categoria Recebimento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Categoria Recebimento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Categoria Recebimento {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria Recebimento"
+      },
+      "id": "ID",
+      "nomeCategoria": "Nome Categoria"
+    }
+  }
+}

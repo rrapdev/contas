@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20230204230021",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "pagador",
+  "fields": [
+    {
+      "fieldName": "nomePagador",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cpfCnpj",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Pagador",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20230204230022",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "categoria_pagamento",
+  "fields": [
+    {
+      "fieldName": "nomeCategoria",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "CategoriaPagamento",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

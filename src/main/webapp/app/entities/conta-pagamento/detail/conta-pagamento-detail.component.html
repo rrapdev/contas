@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contaPagamento">
+      <h2 data-cy="contaPagamentoDetailsHeading"><span jhiTranslate="contasApp.contaPagamento.detail.title">Conta Pagamento</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ contaPagamento.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.dataVencimento">Data Vencimento</span></dt>
+        <dd>
+          <span>{{ contaPagamento.dataVencimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ contaPagamento.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.valor">Valor</span></dt>
+        <dd>
+          <span>{{ contaPagamento.valor }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.dataPagamento">Data Pagamento</span></dt>
+        <dd>
+          <span>{{ contaPagamento.dataPagamento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.valorPago">Valor Pago</span></dt>
+        <dd>
+          <span>{{ contaPagamento.valorPago }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.observacoes">Observacoes</span></dt>
+        <dd>
+          <span>{{ contaPagamento.observacoes }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.periodicidade">Periodicidade</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'contasApp.Periodicidade.' + contaPagamento.periodicidade }}">{{ contaPagamento.periodicidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.beneficiario">Beneficiario</span></dt>
+        <dd>
+          <div *ngIf="contaPagamento.beneficiario">
+            <a [routerLink]="['/beneficiario', contaPagamento.beneficiario.id, 'view']">{{
+              contaPagamento.beneficiario.nomeBeneficiario
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.categoriaPagamento">Categoria Pagamento</span></dt>
+        <dd>
+          <div *ngIf="contaPagamento.categoriaPagamento">
+            <a [routerLink]="['/categoria-pagamento', contaPagamento.categoriaPagamento.id, 'view']">{{
+              contaPagamento.categoriaPagamento.nomeCategoria
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaPagamento.caixa">Caixa</span></dt>
+        <dd>
+          <div *ngIf="contaPagamento.caixa">
+            <a [routerLink]="['/caixa', contaPagamento.caixa.id, 'view']">{{ contaPagamento.caixa.nomeCaixa }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/conta-pagamento', contaPagamento.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "contasApp": {
+    "contaRecebimento": {
+      "home": {
+        "title": "Conta Recebimentos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Conta Recebimento",
+        "createOrEditLabel": "Create or edit a Conta Recebimento",
+        "notFound": "No Conta Recebimentos found"
+      },
+      "created": "A new Conta Recebimento is created with identifier {{ param }}",
+      "updated": "A Conta Recebimento is updated with identifier {{ param }}",
+      "deleted": "A Conta Recebimento is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Conta Recebimento {{ id }}?"
+      },
+      "detail": {
+        "title": "Conta Recebimento"
+      },
+      "id": "ID",
+      "dataVencimento": "Data Vencimento",
+      "descricao": "Descricao",
+      "valor": "Valor",
+      "dataRecebimento": "Data Recebimento",
+      "valorRecebido": "Valor Recebido",
+      "observacoes": "Observacoes",
+      "periodicidade": "Periodicidade",
+      "pagador": "Pagador",
+      "categoriaRecebimento": "Categoria Recebimento",
+      "caixa": "Caixa"
+    }
+  }
+}
