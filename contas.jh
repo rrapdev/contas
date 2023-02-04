@@ -1,0 +1,59 @@
+entity ContaPagamento {
+	dataVencimento LocalDate required,
+	descricao String,
+    valor BigDecimal,
+    dataPagamento LocalDate,
+    valorPago BigDecimal,
+    observacoes String,
+    periodicidade Periodicidade
+}
+
+entity Pagador {
+	nomePagador String,
+    cpfCnpj String
+}
+
+entity CategoriaPagamento {
+	nomeCategoria String
+}
+
+entity ContaRecebimento {
+	dataVencimento LocalDate required,
+	descricao String,
+    valor BigDecimal,
+    dataRecebimento LocalDate,
+    valorRecebido BigDecimal,
+    observacoes String,
+    periodicidade Periodicidade
+}
+
+entity Beneficiario {
+	nomeBeneficiario String,
+    cpfCnpj String
+}
+
+entity CategoriaRecebimento {
+	nomeCategoria String
+}
+
+entity Caixa {
+	nomeCaixa String
+}
+
+enum Periodicidade {
+	ESPORADICA, MENSAL, ANUAL, SEMANAL
+}
+
+relationship ManyToOne {
+	ContaPagamento{beneficiario(nomeBeneficiario)} to Beneficiario,
+    ContaPagamento{categoriaPagamento(nomeCategoria)} to CategoriaPagamento,
+    ContaPagamento{caixa(nomeCaixa)} to Caixa,
+    ContaRecebimento{pagador(nomePagador)} to Pagador,
+    ContaRecebimento{categoriaRecebimento(nomeCategoria)} to CategoriaRecebimento,
+    ContaRecebimento{caixa(nomeCaixa)} to Caixa
+}
+
+paginate * with pagination
+dto * with mapstruct
+service all with serviceImpl
+filter *
