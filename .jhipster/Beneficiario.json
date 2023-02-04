@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20230204230024",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "beneficiario",
+  "fields": [
+    {
+      "fieldName": "nomeBeneficiario",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cpfCnpj",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Beneficiario",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

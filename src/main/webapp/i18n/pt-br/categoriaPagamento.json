@@ -1,0 +1,24 @@
+{
+  "contasApp": {
+    "categoriaPagamento": {
+      "home": {
+        "title": "Categoria Pagamentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Categoria Pagamento",
+        "createOrEditLabel": "Criar ou editar Categoria Pagamento",
+        "notFound": "Nenhum Categoria Pagamento encontrado"
+      },
+      "created": "Um novo Categoria Pagamento foi criado com o identificador {{ param }}",
+      "updated": "Um Categoria Pagamento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Categoria Pagamento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Categoria Pagamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria Pagamento"
+      },
+      "id": "ID",
+      "nomeCategoria": "Nome Categoria"
+    }
+  }
+}

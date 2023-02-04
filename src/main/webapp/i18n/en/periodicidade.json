@@ -1,0 +1,11 @@
+{
+  "contasApp": {
+    "Periodicidade": {
+      "null": "",
+      "ESPORADICA": "ESPORADICA",
+      "MENSAL": "MENSAL",
+      "ANUAL": "ANUAL",
+      "SEMANAL": "SEMANAL"
+    }
+  }
+}

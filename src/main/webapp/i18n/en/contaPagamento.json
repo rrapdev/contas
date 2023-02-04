@@ -1,0 +1,33 @@
+{
+  "contasApp": {
+    "contaPagamento": {
+      "home": {
+        "title": "Conta Pagamentos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Conta Pagamento",
+        "createOrEditLabel": "Create or edit a Conta Pagamento",
+        "notFound": "No Conta Pagamentos found"
+      },
+      "created": "A new Conta Pagamento is created with identifier {{ param }}",
+      "updated": "A Conta Pagamento is updated with identifier {{ param }}",
+      "deleted": "A Conta Pagamento is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Conta Pagamento {{ id }}?"
+      },
+      "detail": {
+        "title": "Conta Pagamento"
+      },
+      "id": "ID",
+      "dataVencimento": "Data Vencimento",
+      "descricao": "Descricao",
+      "valor": "Valor",
+      "dataPagamento": "Data Pagamento",
+      "valorPago": "Valor Pago",
+      "observacoes": "Observacoes",
+      "periodicidade": "Periodicidade",
+      "beneficiario": "Beneficiario",
+      "categoriaPagamento": "Categoria Pagamento",
+      "caixa": "Caixa"
+    }
+  }
+}

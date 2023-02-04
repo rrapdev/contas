@@ -1,0 +1,178 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-conta-pagamento-heading"
+        data-cy="ContaPagamentoCreateUpdateHeading"
+        jhiTranslate="contasApp.contaPagamento.home.createOrEditLabel"
+      >
+        Criar ou editar Conta Pagamento
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.dataVencimento" for="field_dataVencimento"
+            >Data Vencimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataVencimento"
+              data-cy="dataVencimento"
+              type="text"
+              class="form-control"
+              name="dataVencimento"
+              ngbDatepicker
+              #dataVencimentoDp="ngbDatepicker"
+              formControlName="dataVencimento"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataVencimentoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('dataVencimento')!.invalid && (editForm.get('dataVencimento')!.dirty || editForm.get('dataVencimento')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dataVencimento')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              O campo é obrigatório.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.descricao" for="field_descricao">Descricao</label>
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.valor" for="field_valor">Valor</label>
+          <input type="number" class="form-control" name="valor" id="field_valor" data-cy="valor" formControlName="valor" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.dataPagamento" for="field_dataPagamento">Data Pagamento</label>
+          <div class="input-group">
+            <input
+              id="field_dataPagamento"
+              data-cy="dataPagamento"
+              type="text"
+              class="form-control"
+              name="dataPagamento"
+              ngbDatepicker
+              #dataPagamentoDp="ngbDatepicker"
+              formControlName="dataPagamento"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataPagamentoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.valorPago" for="field_valorPago">Valor Pago</label>
+          <input type="number" class="form-control" name="valorPago" id="field_valorPago" data-cy="valorPago" formControlName="valorPago" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.observacoes" for="field_observacoes">Observacoes</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observacoes"
+            id="field_observacoes"
+            data-cy="observacoes"
+            formControlName="observacoes"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.periodicidade" for="field_periodicidade">Periodicidade</label>
+          <select
+            class="form-control"
+            name="periodicidade"
+            formControlName="periodicidade"
+            id="field_periodicidade"
+            data-cy="periodicidade"
+          >
+            <option [ngValue]="null">{{ 'contasApp.Periodicidade.null' | translate }}</option>
+            <option *ngFor="let periodicidade of periodicidadeValues" [value]="periodicidade">
+              {{ 'contasApp.Periodicidade.' + periodicidade | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.beneficiario" for="field_beneficiario">Beneficiario</label>
+          <select
+            class="form-control"
+            id="field_beneficiario"
+            data-cy="beneficiario"
+            name="beneficiario"
+            formControlName="beneficiario"
+            [compareWith]="compareBeneficiario"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="beneficiarioOption" *ngFor="let beneficiarioOption of beneficiariosSharedCollection">
+              {{ beneficiarioOption.nomeBeneficiario }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.categoriaPagamento" for="field_categoriaPagamento"
+            >Categoria Pagamento</label
+          >
+          <select
+            class="form-control"
+            id="field_categoriaPagamento"
+            data-cy="categoriaPagamento"
+            name="categoriaPagamento"
+            formControlName="categoriaPagamento"
+            [compareWith]="compareCategoriaPagamento"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="categoriaPagamentoOption" *ngFor="let categoriaPagamentoOption of categoriaPagamentosSharedCollection">
+              {{ categoriaPagamentoOption.nomeCategoria }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="contasApp.contaPagamento.caixa" for="field_caixa">Caixa</label>
+          <select class="form-control" id="field_caixa" data-cy="caixa" name="caixa" formControlName="caixa" [compareWith]="compareCaixa">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="caixaOption" *ngFor="let caixaOption of caixasSharedCollection">{{ caixaOption.nomeCaixa }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

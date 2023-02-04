@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contaRecebimento">
+      <h2 data-cy="contaRecebimentoDetailsHeading">
+        <span jhiTranslate="contasApp.contaRecebimento.detail.title">Conta Recebimento</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.dataVencimento">Data Vencimento</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.dataVencimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.valor">Valor</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.valor }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.dataRecebimento">Data Recebimento</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.dataRecebimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.valorRecebido">Valor Recebido</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.valorRecebido }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.observacoes">Observacoes</span></dt>
+        <dd>
+          <span>{{ contaRecebimento.observacoes }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.periodicidade">Periodicidade</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'contasApp.Periodicidade.' + contaRecebimento.periodicidade }}">{{ contaRecebimento.periodicidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.pagador">Pagador</span></dt>
+        <dd>
+          <div *ngIf="contaRecebimento.pagador">
+            <a [routerLink]="['/pagador', contaRecebimento.pagador.id, 'view']">{{ contaRecebimento.pagador.nomePagador }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.categoriaRecebimento">Categoria Recebimento</span></dt>
+        <dd>
+          <div *ngIf="contaRecebimento.categoriaRecebimento">
+            <a [routerLink]="['/categoria-recebimento', contaRecebimento.categoriaRecebimento.id, 'view']">{{
+              contaRecebimento.categoriaRecebimento.nomeCategoria
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="contasApp.contaRecebimento.caixa">Caixa</span></dt>
+        <dd>
+          <div *ngIf="contaRecebimento.caixa">
+            <a [routerLink]="['/caixa', contaRecebimento.caixa.id, 'view']">{{ contaRecebimento.caixa.nomeCaixa }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/conta-recebimento', contaRecebimento.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

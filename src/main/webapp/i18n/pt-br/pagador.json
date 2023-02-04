@@ -1,0 +1,25 @@
+{
+  "contasApp": {
+    "pagador": {
+      "home": {
+        "title": "Pagadors",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Pagador",
+        "createOrEditLabel": "Criar ou editar Pagador",
+        "notFound": "Nenhum Pagador encontrado"
+      },
+      "created": "Um novo Pagador foi criado com o identificador {{ param }}",
+      "updated": "Um Pagador foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pagador foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pagador {{ id }}?"
+      },
+      "detail": {
+        "title": "Pagador"
+      },
+      "id": "ID",
+      "nomePagador": "Nome Pagador",
+      "cpfCnpj": "Cpf Cnpj"
+    }
+  }
+}

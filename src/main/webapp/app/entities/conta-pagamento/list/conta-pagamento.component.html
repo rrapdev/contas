@@ -1,0 +1,187 @@
+<div>
+  <h2 id="page-heading" data-cy="ContaPagamentoHeading">
+    <span jhiTranslate="contasApp.contaPagamento.home.title">Conta Pagamentos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="contasApp.contaPagamento.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-conta-pagamento"
+        [routerLink]="['/conta-pagamento/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="contasApp.contaPagamento.home.createLabel"> Criar novo Conta Pagamento </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="contaPagamentos?.length === 0">
+    <span jhiTranslate="contasApp.contaPagamento.home.notFound">Nenhum Conta Pagamento encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="contaPagamentos && contaPagamentos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">Código</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataVencimento">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.dataVencimento">Data Vencimento</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="descricao">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.descricao">Descricao</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="valor">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.valor">Valor</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dataPagamento">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.dataPagamento">Data Pagamento</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="valorPago">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.valorPago">Valor Pago</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="observacoes">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.observacoes">Observacoes</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="periodicidade">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.periodicidade">Periodicidade</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="beneficiario.nomeBeneficiario">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.beneficiario">Beneficiario</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="categoriaPagamento.nomeCategoria">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.categoriaPagamento">Categoria Pagamento</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="caixa.nomeCaixa">
+            <div class="d-flex">
+              <span jhiTranslate="contasApp.contaPagamento.caixa">Caixa</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contaPagamento of contaPagamentos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/conta-pagamento', contaPagamento.id, 'view']">{{ contaPagamento.id }}</a>
+          </td>
+          <td>{{ contaPagamento.dataVencimento | formatMediumDate }}</td>
+          <td>{{ contaPagamento.descricao }}</td>
+          <td>{{ contaPagamento.valor }}</td>
+          <td>{{ contaPagamento.dataPagamento | formatMediumDate }}</td>
+          <td>{{ contaPagamento.valorPago }}</td>
+          <td>{{ contaPagamento.observacoes }}</td>
+          <td jhiTranslate="{{ 'contasApp.Periodicidade.' + contaPagamento.periodicidade }}">{{ contaPagamento.periodicidade }}</td>
+          <td>
+            <div *ngIf="contaPagamento.beneficiario">
+              <a [routerLink]="['/beneficiario', contaPagamento.beneficiario.id, 'view']">{{
+                contaPagamento.beneficiario.nomeBeneficiario
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="contaPagamento.categoriaPagamento">
+              <a [routerLink]="['/categoria-pagamento', contaPagamento.categoriaPagamento.id, 'view']">{{
+                contaPagamento.categoriaPagamento.nomeCategoria
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="contaPagamento.caixa">
+              <a [routerLink]="['/caixa', contaPagamento.caixa.id, 'view']">{{ contaPagamento.caixa.nomeCaixa }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/conta-pagamento', contaPagamento.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/conta-pagamento', contaPagamento.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(contaPagamento)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="contaPagamentos && contaPagamentos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

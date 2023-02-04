@@ -1,0 +1,24 @@
+{
+  "contasApp": {
+    "caixa": {
+      "home": {
+        "title": "Caixas",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Caixa",
+        "createOrEditLabel": "Criar ou editar Caixa",
+        "notFound": "Nenhum Caixa encontrado"
+      },
+      "created": "Um novo Caixa foi criado com o identificador {{ param }}",
+      "updated": "Um Caixa foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Caixa foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Caixa {{ id }}?"
+      },
+      "detail": {
+        "title": "Caixa"
+      },
+      "id": "ID",
+      "nomeCaixa": "Nome Caixa"
+    }
+  }
+}
